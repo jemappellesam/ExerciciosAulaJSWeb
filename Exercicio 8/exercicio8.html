@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Site da Empresa XYZ</title>
+  <style>
+    /* Estilos CSS para a página */
+    .destaque {
+  font-weight: bold;
+  color: #FF5733; 
+}
+
+    body {
+      font-family: Arial, sans-serif;
+    }
+    header {
+      background-color: #333;
+      color: #fff;
+      padding: 10px;
+      text-align: center;
+    }
+    nav {
+      background-color: #f4f4f4;
+      padding: 10px;
+    }
+    nav ul {
+      list-style-type: none;
+      margin: 0;
+      padding: 0;
+    }
+    nav ul li {
+      display: inline;
+      margin-right: 10px;
+    }
+    section {
+      padding: 20px;
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+    }
+    th, td {
+      border: 1px solid #ddd;
+      padding: 8px;
+      text-align: left;
+    }
+    th {
+      background-color: #f2f2f2;
+    }
+
+    .fundoColorido{
+      background-color: aqua;
+    }
+  </style>
+</head>
+<body>
+
+<header id="h1">
+  <h1 id="nome-empresa">Empresa XYZ</h1>
+</header>
+
+<nav>
+  <ul id="menus">
+    <li><a class="menu" href="#">Início</a></li>
+    <li><a class="menu" href="#">Produtos</a></li>
+    <li><a class="menu" href="#">Serviços</a></li>
+    <li><a class="menu" href="#">Contato</a></li>
+  </ul>
+</nav>
+
+<section>
+  <h2>Sobre Nossa Empresa</h2>
+  <p id="sobre">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed viverra justo sed metus aliquam, eget fringilla lectus dapibus.</p>
+  
+  <h2>Nossos Produtos</h2>
+  <ul id="produtos">
+    <li>Produto 1</li>
+    <li>Produto 2</li>
+    <li>Produto 3</li>
+  </ul>
+  
+  <h2>Serviços Oferecidos</h2>
+  <ul id="servicos">
+    <li>Serviço A</li>
+    <li>Serviço B</li>
+    <li>Serviço C</li>
+  </ul>
+  
+  <h2>Contato</h2>
+  <p>Telefone: <span aria-content="telefone">(00) 1234-5678</span></p>
+  <p>Email: <address><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="24474b4a5045504b64414954564157450a474b49">[email&#160;protected]</a></address></p>
+  
+  <h2>Relatório de Vendas</h2>
+  <table id="vendas">
+    <thead>
+      <tr>
+        <th>Data</th>
+        <th>Produto</th>
+        <th>Quantidade</th>
+        <th>Valor</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>01/01/2024</td>
+        <td>Produto A</td>
+        <td>10</td>
+        <td>R$ 100,00</td>
+      </tr>
+      <tr>
+        <td>02/01/2024</td>
+        <td>Produto B</td>
+        <td>8</td>
+        <td>R$ 80,00</td>
+      </tr>
+      <tr>
+        <td>03/01/2024</td>
+        <td>Produto C</td>
+        <td>15</td>
+        <td>R$ 150,00</td>
+      </tr>
+      <tr>
+        <td>01/02/2024</td>
+        <td>Produto A</td>
+        <td>10</td>
+        <td>R$ 120,00</td>
+      </tr>
+      <tr>
+        <td>02/02/2024</td>
+        <td>Produto B</td>
+        <td>8</td>
+        <td>R$ 10,00</td>
+      </tr>
+      <tr>
+        <td>03/02/2024</td>
+        <td>Produto C</td>
+        <td>15</td>
+        <td>R$ 300,00</td>
+      </tr>
+      <tr>
+        <td>01/03/2024</td>
+        <td>Produto A</td>
+        <td>10</td>
+        <td>R$ 190,00</td>
+      </tr>
+      <tr>
+        <td>02/03/2024</td>
+        <td>Produto B</td>
+        <td>8</td>
+        <td>R$ 180,00</td>
+      </tr>
+      <tr>
+        <td>03/03/2024</td>
+        <td>Produto C</td>
+        <td>15</td>
+        <td>R$ 1150,00</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <table>
+    <thead id="resumo-vendas-cab">
+      <tr>
+        <th colspan="3">Resumo de vendas</th>
+      </tr>
+      <tr>
+        <th>Produto</th>
+        <th>Quantidade</th>
+        <th>Valor total</th>
+      </tr>
+    </thead>
+    <tbody id="resumo-vendas">
+
+    </tbody>
+  </table>
+</section>
+
+<footer>
+  <p>&copy; 2024 Empresa XYZ. Todos os direitos reservados.</p>
+</footer>
+
+<script>
+
+
+function obterConteudoVendas() {
+  return Array.from(vendas.children[1].children);
+}
+
+function calcularTotalVendas(conteudoVendas) {
+  const produtosVendidos = {};
+
+  conteudoVendas.forEach(venda => {
+    const [_, produtovendido, quantidadevendida, valorVendido] = venda.children;
+    const valorVendidoFloat = parseFloat(valorVendido.innerText.replace("R$ ", ""));
+    
+    if (!produtosVendidos[produtovendido.innerText]) {
+      produtosVendidos[produtovendido.innerText] = {
+        quantidade: 0,
+        valor: 0
+      };
+    }
+    
+    produtosVendidos[produtovendido.innerText].quantidade += parseInt(quantidadevendida.innerText);
+    produtosVendidos[produtovendido.innerText].valor += valorVendidoFloat;
+  });
+
+  return produtosVendidos;
+}
+
+function exibirProdutosVendidos(produtosVendidos) {
+  console.log(`Produtos vendidos: `, produtosVendidos);
+}
+
+function criarElementoComConteudo(elemento, conteudo) {
+  const elem = document.createElement(elemento);
+  elem.innerText = conteudo;
+  return elem;
+}
+
+function adicionarProdutosNaTabela(produtosVendidos) {
+  const resumoVendas = document.getElementById("resumo-vendas");
+  const nomesDosProdutos = Object.keys(produtosVendidos);
+
+  nomesDosProdutos.forEach(produto => {
+    const tr = document.createElement("tr");
+
+    const tdProduto = criarElementoComConteudo("td", produto);
+    const tdQuantidade = criarElementoComConteudo("td", produtosVendidos[produto].quantidade);
+    const tdValor = criarElementoComConteudo("td", `R$ ${produtosVendidos[produto].valor.toFixed(2).replace(".", ",")}`);
+
+    tr.appendChild(tdProduto);
+    tr.appendChild(tdQuantidade);
+    tr.appendChild(tdValor);
+
+    resumoVendas.appendChild(tr);
+  });
+}
+
+function adicionarEventoClickProdutos() {
+  Array.from(document.getElementById("produtos").children).forEach(produto => {
+    produto.addEventListener('click', () => {
+      alert(produto.innerText);
+    });
+  });
+}
+
+function adicionarEventoDuploClickServicos() {
+  Array.from(document.getElementById("servicos").children).forEach(servico => {
+    servico.addEventListener('dblclick', (event) => {
+      const existeClasse = event.target.classList.contains("fundoColorido");
+      if (existeClasse) {
+        event.target.classList.remove("fundoColorido");
+      } else {
+        event.target.classList.add("fundoColorido");
+      }
+    });
+  });
+}
+
+function adicionarLinksMenus() {
+  Array.from(document.getElementById("menus").children).forEach(menu => {
+    const elementoMenu = menu.children[0];
+    elementoMenu.setAttribute("href", "https://www.google.com");
+  });
+}
+
+function ajustarEstiloTabela() {
+  const tabelaResumo = document.getElementById("resumo-vendas-cab").parentNode;
+  tabelaResumo.style.marginTop = '50px';
+}
+
+const conteudoVendas = obterConteudoVendas();
+const produtosVendidos = calcularTotalVendas(conteudoVendas);
+exibirProdutosVendidos(produtosVendidos);
+adicionarProdutosNaTabela(produtosVendidos);
+ajustarEstiloTabela();
+adicionarEventoClickProdutos();
+adicionarEventoDuploClickServicos();
+adicionarLinksMenus();
+const paragrafo = document.createElement("p");
+paragrafo.textContent = "Somos uma empresa comprometida com a qualidade e satisfação dos nossos clientes.";
+document.querySelector("#sobre").appendChild(paragrafo);
+const listaProdutos = document.getElementById("produtos");
+const ultimoItem = listaProdutos.lastElementChild;
+ultimoItem.textContent = "Produto 4";
+const cabecalho = document.querySelector("header");
+cabecalho.style.backgroundColor = "#FF5733";
+const quantidadeProdutos = listaProdutos.children.length;
+const paragrafoQuantidadeProdutos = document.createElement("p");
+paragrafoQuantidadeProdutos.textContent = `Total de produtos: ${quantidadeProdutos}`;
+document.querySelector("#produtos").appendChild(paragrafoQuantidadeProdutos);
+const novoParagrafo = document.createElement("p");
+novoParagrafo.textContent = "Oferecemos uma variedade de serviços para atender às necessidades de nossos clientes.";
+const secaoServicos = document.getElementById("servicos");
+secaoServicos.appendChild(novoParagrafo);
+const primeiroItemProduto = listaProdutos.firstElementChild;
+primeiroItemProduto.classList.add("destaque");
+const tabelaRelatorioVendas = document.getElementById("vendas");
+tabelaRelatorioVendas.remove();
+const ultimoItemMenu = document.querySelector("#menus li:last-child a");
+ultimoItemMenu.setAttribute("href", "contato.html");
+
+const hed = document.getElementById("h1");
+hed.addEventListener("click",clicou)
+function clicou(){
+  if (hed.style.backgroundColor === "rgb(255, 87, 51)") {
+    hed.style.backgroundColor = "#555";
+  } else {
+    hed.style.backgroundColor = "#FF5733";
+  }
+}
+
+</script>
+</html>
